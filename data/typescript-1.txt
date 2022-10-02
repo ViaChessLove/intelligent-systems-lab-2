@@ -1,10 +1,10 @@
 Why TypeScript?
 JavaScript is a dynamic programming language
 with no type system. JavaScript provides primitive types
-like string, number, object, etc., but it doesn't check
+like string, number, object, etc., but it does not check
 assigned values. JavaScript variables are declared using
 the var keyword, and it can point to any value. JavaScript
-doesn't support classes and other object-oriented features
+does not support classes and other object-oriented features
 (ECMA2015 supports it). So, without the type system,
 it is not easy to use JavaScript to build
 complex applications with large teams working on the same code.

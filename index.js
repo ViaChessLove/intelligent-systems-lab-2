@@ -10,19 +10,28 @@ const {
 
 const {
   stopWords,
-  splitableSymbols,
+  symbols,
+  numberPattern,
+  fileTitles
 } = constants;
 
 const {
-  readFile,
+  fillTextWithContentFromData,
+  filterBySymbolAndNumber,
+  filterByStopWords,
 } = utils;
 
 
 
-const fileText = question('Input the file title: ');
-const textPath = `/data/${fileText}.txt`;
-const fileContent = readFile(textPath);
+//const fileText = question('Input the file title: ');
+const fileTexts = [];
+fileTitles.forEach((title) => fillTextWithContentFromData(fileTexts, title));
 
-console.log(fileContent);
+const formattedContentToLowerCase = fileTexts.join('').toLowerCase();
+const filteredText = formattedContentToLowerCase.split('')
+  .filter((character) => filterBySymbolAndNumber(symbols, character, numberPattern)).join('');
 
-const formattedContentToLowerCase = fileContent.toLowerCase();
+const words = filteredText.split('\r\n').join(' ').split(' ').filter((character) => character === '' ? false : true);
+
+const wordsWithoutStopWords = words.filter((character) => filterByStopWords(character, stopWords));
+console.log(wordsWithoutStopWords);

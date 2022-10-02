@@ -23,13 +23,24 @@ const stopWords = [
   'doing', 'it', 'how', 'further', 'was', 'here', 'than'
 ];
 
-const splitableSymbols = [
-  '\r\n', ',', '(', ')', ' - ',
+const symbols = [
+  ',', '(', ')', ' - ',
   '[', ']', ':', ';', '#', '+',
-  '_', '/', '@',
+  '_', '/', '@', '.', "'"
 ];
+
+const numberPattern = /\d+/g;
+
+const fileTitles = [
+  'jses2022',
+  'why-es-build-fast',
+  'typescript-1',
+  'typescript-2'
+]
 
 module.exports = Object.freeze({
   stopWords,
-  splitableSymbols,
+  symbols,
+  numberPattern,
+  fileTitles,
 });
