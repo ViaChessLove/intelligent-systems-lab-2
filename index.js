@@ -1,5 +1,11 @@
 "use strict";
 
+//TODO: сделать стемминг Портера
+//TODO: добавить весовые коэффициенты для термов (то что отстемлено)
+//TODO: посчитать релевантность 
+//TODO: реализовать одну из моделей поиска
+//TODO: выдача при поиске должна выдавать название файла, сходные термы, 
+
 const readLine = require('readline-sync');
 const constants = require('./constants');
 const utils = require('./utils');
