@@ -5,9 +5,14 @@ const readFile = (fileName) => {
 };
 
 const fillTextWithContentFromData = (fileTexts, title) => {
-  const textPath = `/data/${title}.txt`;
+  const fileName = `${title}.txt`;
+  const textPath = `/data/${fileName}`;
   const fileContent = readFile(textPath);
-  fileTexts.push(fileContent)
+  const fileInfo = {
+    title: fileName,
+    content: fileContent
+  };
+  fileTexts.push(fileInfo)
 };
 
 const filterBySymbol = (symbols, character) => {

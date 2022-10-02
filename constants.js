@@ -31,11 +31,10 @@ const symbols = [
 
 const numberPattern = /\d+/g;
 
+// min 2 files for collection
 const fileTitles = [
   'jses2022',
   'why-es-build-fast',
-  'typescript-1',
-  'typescript-2'
 ]
 
 module.exports = Object.freeze({

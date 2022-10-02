@@ -21,17 +21,34 @@ const {
   filterByStopWords,
 } = utils;
 
-
-
 //const fileText = question('Input the file title: ');
 const fileTexts = [];
 fileTitles.forEach((title) => fillTextWithContentFromData(fileTexts, title));
+const formattedContentToLowerCase = fileTexts.map(({title, content}) => ({
+  title,
+  content: content.toLowerCase(),
+}));
 
-const formattedContentToLowerCase = fileTexts.join('').toLowerCase();
-const filteredText = formattedContentToLowerCase.split('')
-  .filter((character) => filterBySymbolAndNumber(symbols, character, numberPattern)).join('');
+const filteredText = formattedContentToLowerCase.map(({title, content}) => ({
+  title,
+  content: content
+  .split('')
+  .filter((character) => filterBySymbolAndNumber(symbols, character, numberPattern))
+  .join(''),
+}));
 
-const words = filteredText.split('\r\n').join(' ').split(' ').filter((character) => character === '' ? false : true);
+const tokenizedText = filteredText.map(({title, content}) => ({
+  title,
+  content: content
+  .split('\r\n')
+  .join(' ')
+  .split(' ')
+  .filter((character) => character === '' ? false : true),
+}));
 
-const wordsWithoutStopWords = words.filter((character) => filterByStopWords(character, stopWords));
-console.log(wordsWithoutStopWords);
+const tokenizedTextWithoutStopWords = tokenizedText.map(({title, content}) => ({
+  title,
+  content: content.filter((character) => filterByStopWords(character, stopWords)),
+}));
+
+console.log(tokenizedTextWithoutStopWords);
