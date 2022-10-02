@@ -1,0 +1,25 @@
+Why TypeScript?
+JavaScript is a dynamic programming language
+with no type system. JavaScript provides primitive types
+like string, number, object, etc., but it doesn't check
+assigned values. JavaScript variables are declared using
+the var keyword, and it can point to any value. JavaScript
+doesn't support classes and other object-oriented features
+(ECMA2015 supports it). So, without the type system,
+it is not easy to use JavaScript to build
+complex applications with large teams working on the same code.
+The type system increases the code quality, readability
+and makes it easy to maintain and refactor codebase.
+More importantly, errors can be caught at compile
+time rather than at runtime. Hence, the reason to use
+TypeScript is that it catches errors at compile-time,
+so that you can fix it before you run code. It supports
+object-oriented programming features like data types
+classes, enums, etc., allowing JavaScript to be used at scale.
+TypeScript compiles into simple JavaScript.
+The TypeScript compiler is also implemented in
+TypeScript and can be used with any browser or
+JavaScript engines like Node.js. TypeScript needs
+an ECMAScript 3 or higher compatible environment
+to compile. This is a condition met by all major
+browsers and JavaScript engines today.

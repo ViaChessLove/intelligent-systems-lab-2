@@ -1,0 +1,28 @@
+Private class features
+Class fields are public by default, but private
+class members can be created by using a hash
+prefix. The privacy encapsulation of these class features is enforced by JavaScript itself.
+Private members are not native to the language before this syntax existed.
+In prototypical inheritance, its behavior may be emulated with
+WeakMap objects or closures, but they can't compare to the # syntax in terms of ergonomics.
+Description
+Most class features have their private counterparts:
+Private fields
+Private methods
+Private static fields
+Private static methods
+Private getters
+Private setters
+Private static getters
+Private static setters
+These features are collectively called private properties.
+However, constructors cannot be private in JavaScript.
+To prevent classes from being constructed outside of the class, you have to use a private flag.
+Private properties are declared with # names (pronounced "hash names"),
+which are identifiers prefixed with #. The hash prefix is 
+inherent part of the property name — you can draw relationship
+with the old underscore prefix convention _privateField — but
+it's not an ordinary string property, so you can't dynamically access it with the bracket notation.
+It is a syntax error to refer to # names from outside of the class.
+It is also a syntax error to refer to private properties that
+were not declared in the class body, or to attempt to remove declared properties with delete.

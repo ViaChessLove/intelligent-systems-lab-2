@@ -1,0 +1,32 @@
+Object-Oriented language: TypeScript provides a complete
+feature of an object-oriented programming
+language such as classes, interfaces,
+inheritance, modules, etc. In TypeScript,
+we can write code for both client-side as
+well as server-side development.
+TypeScript supports JavaScript libraries: TypeScript supports
+each JavaScript elements. It allows the developers to use
+existing JavaScript code with the TypeScript. Here,
+we can use all of the JavaScript frameworks, tools, and other libraries easily.
+JavaScript is TypeScript: It means the code written in JavaScript
+with valid .js extension can be converted to TypeScript by
+changing the extension from .js to .ts and compiled with other TypeScript files.
+TypeScript is portable: TypeScript is portable because it can be executed
+on any browsers, devices, or any operating systems. It
+can be run in any environment where JavaScript runs on.
+It is not specific to any virtual-machine for execution.
+DOM Manipulation: TypeScript can be used to manipulate the DOM
+for adding or removing elements similar to JavaScript.
+TypeScript is just a JS: TypeScript code is not executed on any browsers directly.
+The program written in TypeScript always starts with JavaScript and ends with JavaScript.
+Hence, we only need to know JavaScript to use it in TypeScript.
+The code written in TypeScript is compiled and converted into its
+JavaScript equivalent for the execution. This process is known as
+Transpiled. With the help of JavaScript code,
+browsers can read the TypeScript code and display the output.
+Advantage of TypeScript over JavaScript
+TypeScript always highlights errors at compilation time during the time of development, whereas JavaScript points out errors at the runtime.
+TypeScript supports strongly typed or static typing, whereas this is not in JavaScript.
+TypeScript runs on any browser or JavaScript engine.
+Great tooling supports with IntelliSense, which provides active hints as the code is added.
+It has a namespace concept by defining a module

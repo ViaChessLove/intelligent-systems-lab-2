@@ -1,0 +1,20 @@
+ECMAScript 2022, the next update to the official standard behind
+JavaScript, has been formally approved, with new capabilities
+ranging from class elements to a top-level await capability.
+The ECMAScript 2022 specification was approved by ECMA International
+on June 22. But the features already are available in most browsers,
+said Robert Palmer, co-chair of the TC39 committee that shepherds
+the standard, in March. Feature availability in JavaScript
+engines is more relevant to developers than appearance in the actual specification, Palmer said.
+ECMAScript 2022 has the following new features:
+Top-level await, allowing the await keyword to be used at the top level of modules.
+New class elements, including public and private instance fields,
+public and private static fields, and private instance methods and accessors.
+Static blocks within classes, to perform per-class evaluation initialization.
+The #x in obj#x in obj syntax, to test for the presence of private fields on objects.
+Regular expression match indices via the /d/d flag, which offers
+start and end indices for matched substrings.
+The cause property on Error objects, to be used to record a causation chain in errors.
+The at method for Strings, Arrays, and TypedArrays, allowing
+ for relative indexing and for use of Object.hasOwn,
+an alternative to Object.prototype.hasOwnProperty.
