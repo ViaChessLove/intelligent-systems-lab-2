@@ -1,3 +1,9 @@
+// min 2 files for collection
+const fileTitles = [
+  'jses2022',
+  'why-es-build-fast',
+];
+
 const stopWords = [
   'ourselves', 'hers', 'between', 'yourself',
   'but', 'again', 'there', 'about', 'once',
@@ -31,11 +37,6 @@ const symbols = [
 
 const numberPattern = /\d+/g;
 
-// min 2 files for collection
-const fileTitles = [
-  'jses2022',
-  'why-es-build-fast',
-]
 
 module.exports = Object.freeze({
   stopWords,

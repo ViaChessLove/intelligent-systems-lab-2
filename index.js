@@ -9,6 +9,7 @@
 const readLine = require('readline-sync');
 const constants = require('./constants');
 const utils = require('./utils');
+const porterStemmer = require('./porterStemmer');
 
 const {
   question,
@@ -26,6 +27,10 @@ const {
   filterBySymbolAndNumber,
   filterByStopWords,
 } = utils;
+
+const {
+  stemmer,
+} = porterStemmer
 
 //const fileText = question('Input the file title: ');
 const fileTexts = [];
@@ -57,4 +62,9 @@ const tokenizedTextWithoutStopWords = tokenizedText.map(({title, content}) => ({
   content: content.filter((character) => filterByStopWords(character, stopWords)),
 }));
 
-console.log(tokenizedTextWithoutStopWords);
+console.log(stemmer('fusses'))
+console.log(stemmer('lies'))
+console.log(stemmer('tuss'))
+console.log(stemmer('suas'))
+
+//console.log(tokenizedTextWithoutStopWords);
