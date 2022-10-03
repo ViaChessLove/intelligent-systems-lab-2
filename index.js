@@ -1,5 +1,6 @@
 "use strict";
 
+
 //TODO: сделать стемминг Портера
 //TODO: добавить весовые коэффициенты для термов (то что отстемлено)
 //TODO: посчитать релевантность 
@@ -10,6 +11,11 @@ const readLine = require('readline-sync');
 const constants = require('./constants');
 const utils = require('./utils');
 const porterStemmer = require('./porterStemmer');
+const lodash = require('lodash');
+
+const {
+  countBy
+} = lodash;
 
 const {
   question,
@@ -26,11 +32,12 @@ const {
   fillTextWithContentFromData,
   filterBySymbolAndNumber,
   filterByStopWords,
+  countCharacterInString
 } = utils;
 
 const {
   stemmer,
-} = porterStemmer
+} = porterStemmer;
 
 //const fileText = question('Input the file title: ');
 const fileTexts = [];
@@ -65,6 +72,8 @@ const tokenizedTextWithoutStopWords = tokenizedText.map(({title, content}) => ({
 console.log(stemmer('fusses'))
 console.log(stemmer('lies'))
 console.log(stemmer('tuss'))
-console.log(stemmer('suas'))
+console.log(stemmer('suaaweqeds'))
+
+console.log(stemmer('feds'))
 
 //console.log(tokenizedTextWithoutStopWords);

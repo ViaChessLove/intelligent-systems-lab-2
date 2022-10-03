@@ -1,3 +1,10 @@
+const lodash = require('lodash');
+const {
+  countBy
+} = lodash;
+
+const countCharactersInString = (str, ch) => countBy(str)[ch] || 0;
+
 const readFile = (fileName) => {
   const fileStream = require('fs');
   const path = process.cwd();
@@ -50,4 +57,5 @@ module.exports = {
   fillTextWithContentFromData,
   filterBySymbolAndNumber,
   filterByStopWords,
+  countCharactersInString,
 };
