@@ -1,5 +1,5 @@
 const utils = require('./utils');
-
+//unfinished (overhead)
 const {
   countCharactersInString
 } = utils;
@@ -21,7 +21,6 @@ const checkWordContainsVowel = (word) => {
   word
   .split('')
   .forEach((letter) => {
-    console.log('q')
     if (isVowelLetter(letter)) {
       return true;
     }

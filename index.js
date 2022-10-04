@@ -1,17 +1,16 @@
 "use strict";
 
-
-//TODO: сделать стемминг Портера
 //TODO: добавить весовые коэффициенты для термов (то что отстемлено)
 //TODO: посчитать релевантность 
 //TODO: реализовать одну из моделей поиска
 //TODO: выдача при поиске должна выдавать название файла, сходные термы, 
-
+const stemmer = require('porter-stemmer').stemmer;
 const readLine = require('readline-sync');
+const lodash = require('lodash');
+
 const constants = require('./constants');
 const utils = require('./utils');
-const porterStemmer = require('./porterStemmer');
-const lodash = require('lodash');
+
 
 const {
   countBy
@@ -20,6 +19,7 @@ const {
 const {
   question,
 } = readLine;
+
 
 const {
   stopWords,
@@ -35,11 +35,6 @@ const {
   countCharacterInString
 } = utils;
 
-const {
-  stemmer,
-} = porterStemmer;
-
-//const fileText = question('Input the file title: ');
 const fileTexts = [];
 fileTitles.forEach((title) => fillTextWithContentFromData(fileTexts, title));
 const formattedContentToLowerCase = fileTexts.map(({title, content}) => ({
@@ -69,11 +64,6 @@ const tokenizedTextWithoutStopWords = tokenizedText.map(({title, content}) => ({
   content: content.filter((character) => filterByStopWords(character, stopWords)),
 }));
 
-console.log(stemmer('fusses'))
-console.log(stemmer('lies'))
-console.log(stemmer('tuss'))
-console.log(stemmer('suaaweqeds'))
+const stemmed = stemmer('Smurfastic');
+console.log(stemmed);
 
-console.log(stemmer('feds'))
-
-//console.log(tokenizedTextWithoutStopWords);
