@@ -1,6 +1,5 @@
 "use strict";
 
-//TODO: добавить весовые коэффициенты для термов (то что отстемлено)
 //TODO: посчитать релевантность 
 //TODO: реализовать одну из моделей поиска
 //TODO: выдача при поиске должна выдавать название файла, сходные термы, 
@@ -61,9 +60,18 @@ const tokenizedText = filteredText.map(({title, content}) => ({
 
 const tokenizedTextWithoutStopWords = tokenizedText.map(({title, content}) => ({
   title,
-  content: content.filter((character) => filterByStopWords(character, stopWords)),
+  content: content.filter((word) => filterByStopWords(word, stopWords)),
 }));
 
-const stemmed = stemmer('Smurfastic');
-console.log(stemmed);
+const stemmedTokenizedText = tokenizedTextWithoutStopWords.map(({title, content}) => ({
+  title,
+  content: content.map((word) => stemmer(word)),
+}));
+
+const weightedStemmedText = stemmedTokenizedText.map(({title, content}) => ({
+  title,
+  content: countBy(content),
+}));
+
+console.log(weightedStemmedText);
 
