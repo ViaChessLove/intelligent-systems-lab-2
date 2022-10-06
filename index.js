@@ -1,8 +1,8 @@
 "use strict";
 
-//TODO: посчитать релевантность 
 //TODO: реализовать одну из моделей поиска
-//TODO: выдача при поиске должна выдавать название файла, сходные термы, 
+//TODO: выдача при поиске должна выдавать название файла, сходные термы,
+
 const stemmer = require('porter-stemmer').stemmer;
 const readLine = require('readline-sync');
 const lodash = require('lodash');
@@ -12,7 +12,7 @@ const utils = require('./utils');
 
 
 const {
-  countBy
+  countBy,
 } = lodash;
 
 const {
@@ -35,7 +35,9 @@ const {
 } = utils;
 
 const fileTexts = [];
+
 fileTitles.forEach((title) => fillTextWithContentFromData(fileTexts, title));
+
 const formattedContentToLowerCase = fileTexts.map(({title, content}) => ({
   title,
   content: content.toLowerCase(),
@@ -65,7 +67,12 @@ const tokenizedTextWithoutStopWords = tokenizedText.map(({title, content}) => ({
 
 const stemmedTokenizedText = tokenizedTextWithoutStopWords.map(({title, content}) => ({
   title,
-  content: content.map((word) => stemmer(word)),
+  content: content.map((word) => {
+    return word
+    .split('-')
+    .map((word) => stemmer(word))
+    .join('-');
+  }),
 }));
 
 const weightedStemmedText = stemmedTokenizedText.map(({title, content}) => ({
@@ -73,5 +80,23 @@ const weightedStemmedText = stemmedTokenizedText.map(({title, content}) => ({
   content: countBy(content),
 }));
 
-console.log(weightedStemmedText);
+const relevantWeightedText = weightedStemmedText.map(({title, content}) => {
+  const contentSortedByDescending = Object.fromEntries(
+    Object
+    .entries(content)
+    .sort(([, current], [, checkable]) => checkable - current)
+  );
 
+  return {
+    title,
+    content: contentSortedByDescending
+  }
+});
+
+console.log(relevantWeightedText);
+
+const searchableString = question("Input the line to search: ");
+
+const arrayOfSearchableString = searchableString.split(' ');
+
+console.log(arrayOfSearchableString);

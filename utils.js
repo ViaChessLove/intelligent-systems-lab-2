@@ -8,7 +8,9 @@ const countCharactersInString = (str, ch) => countBy(str)[ch] || 0;
 const readFile = (fileName) => {
   const fileStream = require('fs');
   const path = process.cwd();
-  return fileStream.readFileSync(path + fileName).toString();
+  return fileStream
+  .readFileSync(path + fileName)
+  .toString();
 };
 
 const fillTextWithContentFromData = (fileTexts, title) => {
@@ -19,7 +21,7 @@ const fillTextWithContentFromData = (fileTexts, title) => {
     title: fileName,
     content: fileContent
   };
-  fileTexts.push(fileInfo)
+  fileTexts.push(fileInfo);
 };
 
 const filterBySymbol = (symbols, character) => {
@@ -33,7 +35,9 @@ const filterBySymbol = (symbols, character) => {
 };
 
 const filterByPattern = (character, pattern) => {
-  return !character.match(pattern) ? true : false;
+  return !character.match(pattern)
+  ? true
+  : false;
 }
 
 const filterBySymbolAndNumber = (symbols, character, numberPattern) => {
