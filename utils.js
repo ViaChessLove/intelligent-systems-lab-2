@@ -1,7 +1,10 @@
-const lodash = require('lodash');
+const { countBy } = require('lodash');
+const { stemmer } = require('porter-stemmer');
 const {
-  countBy
-} = lodash;
+  symbols,
+  numberPattern,
+} = require('./constants');
+
 
 const countCharactersInString = (str, ch) => countBy(str)[ch] || 0;
 
@@ -35,7 +38,8 @@ const filterBySymbol = (symbols, character) => {
 };
 
 const filterByPattern = (character, pattern) => {
-  return !character.match(pattern)
+  return !character
+  .match(pattern)
   ? true
   : false;
 }
@@ -54,7 +58,27 @@ const filterByStopWords = (character, stopWords) => {
     }
   });
   return filterFlag;
-}
+};
+
+const tokenizeText = (text) => (
+  text
+  .toLowerCase()
+  .split('')
+  .filter((character) => filterBySymbolAndNumber(symbols, character, numberPattern))
+  .join('')
+  .split('\r\n')
+  .join(' ')
+  .split(' ')
+  .filter((character) => character === '' ? false : true
+));
+
+const stemText = (text) => text
+  .map((word) => (
+    word
+    .split('-')
+    .map((word) => stemmer(word))
+    .join('-')
+));
 
 module.exports = {
   readFile,
@@ -62,4 +86,6 @@ module.exports = {
   filterBySymbolAndNumber,
   filterByStopWords,
   countCharactersInString,
+  tokenizeText,
+  stemText,
 };

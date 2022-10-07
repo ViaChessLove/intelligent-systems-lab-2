@@ -3,61 +3,27 @@
 //TODO: реализовать одну из моделей поиска
 //TODO: выдача при поиске должна выдавать название файла, сходные термы,
 
-const stemmer = require('porter-stemmer').stemmer;
-const readLine = require('readline-sync');
-const lodash = require('lodash');
-
-const constants = require('./constants');
-const utils = require('./utils');
-
-
-const {
-  countBy,
-} = lodash;
-
-const {
-  question,
-} = readLine;
-
+const { question } = require('readline-sync');
+const { countBy } = require('lodash');
 
 const {
   stopWords,
-  symbols,
-  numberPattern,
-  fileTitles
-} = constants;
-
-const {
+  fileTitles,
+} = require('./constants');
+const{
   fillTextWithContentFromData,
-  filterBySymbolAndNumber,
   filterByStopWords,
-  countCharacterInString
-} = utils;
+  tokenizeText,
+  stemText,
+} = require('./utils');
 
 const fileTexts = [];
 
 fileTitles.forEach((title) => fillTextWithContentFromData(fileTexts, title));
 
-const formattedContentToLowerCase = fileTexts.map(({title, content}) => ({
+const tokenizedText = fileTexts.map(({title, content}) => ({
   title,
-  content: content.toLowerCase(),
-}));
-
-const filteredText = formattedContentToLowerCase.map(({title, content}) => ({
-  title,
-  content: content
-  .split('')
-  .filter((character) => filterBySymbolAndNumber(symbols, character, numberPattern))
-  .join(''),
-}));
-
-const tokenizedText = filteredText.map(({title, content}) => ({
-  title,
-  content: content
-  .split('\r\n')
-  .join(' ')
-  .split(' ')
-  .filter((character) => character === '' ? false : true),
+  content: tokenizeText(content),
 }));
 
 const tokenizedTextWithoutStopWords = tokenizedText.map(({title, content}) => ({
@@ -67,12 +33,7 @@ const tokenizedTextWithoutStopWords = tokenizedText.map(({title, content}) => ({
 
 const stemmedTokenizedText = tokenizedTextWithoutStopWords.map(({title, content}) => ({
   title,
-  content: content.map((word) => {
-    return word
-    .split('-')
-    .map((word) => stemmer(word))
-    .join('-');
-  }),
+  content: stemText(content),
 }));
 
 const weightedStemmedText = stemmedTokenizedText.map(({title, content}) => ({
@@ -90,13 +51,20 @@ const relevantWeightedText = weightedStemmedText.map(({title, content}) => {
   return {
     title,
     content: contentSortedByDescending
-  }
+  };
 });
 
-console.log(relevantWeightedText);
+//console.log(relevantWeightedText);
 
-const searchableString = question("Input the line to search: ");
 
-const arrayOfSearchableString = searchableString.split(' ');
+const searchableRequest = question("Input the line to search: ");
 
-console.log(arrayOfSearchableString);
+const tokenizedSearchableRequest = tokenizeText(searchableRequest);
+
+const filterTokenizedSearchableRequest = tokenizedSearchableRequest.filter((word) => filterByStopWords(word, stopWords));
+
+const stemmedTokenizedRequest = stemText(filterTokenizedSearchableRequest);
+
+console.log(relevantWeightedText.length);
+
+//ПРОЙТИСЬ ПО ОБЪЕКТАМ СДЕЛАТЬ СЧЕТЧИКИ И С БОЛЬШИМ СЧЕТЧИКОМ ВЫВЕСТИ

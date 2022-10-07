@@ -32,11 +32,11 @@ const stopWords = [
 const symbols = [
   ',', '(', ')', ' - ',
   '[', ']', ':', ';', '#', '+',
-  '_', '/', '@', '.', "'"
+  '_', '/', '@', '.', "'", '"',
+  '?', '%', '^', '$', '!'
 ];
 
 const numberPattern = /\d+/g;
-
 
 module.exports = Object.freeze({
   stopWords,
