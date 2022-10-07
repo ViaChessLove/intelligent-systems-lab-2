@@ -1,6 +1,5 @@
 "use strict";
 
-//TODO: реализовать одну из моделей поиска
 //TODO: выдача при поиске должна выдавать название файла, сходные термы,
 
 const { question } = require('readline-sync');
@@ -16,6 +15,7 @@ const{
   tokenizeText,
   stemText,
 } = require('./utils');
+const { getResponse } = require('./vectorSearchModel');
 
 const fileTexts = [];
 
@@ -54,17 +54,13 @@ const relevantWeightedText = weightedStemmedText.map(({title, content}) => {
   };
 });
 
-//console.log(relevantWeightedText);
 
+const searchingRequest = question("Input the line to search: ");
 
-const searchableRequest = question("Input the line to search: ");
-
-const tokenizedSearchableRequest = tokenizeText(searchableRequest);
+const tokenizedSearchableRequest = tokenizeText(searchingRequest);
 
 const filterTokenizedSearchableRequest = tokenizedSearchableRequest.filter((word) => filterByStopWords(word, stopWords));
 
 const stemmedTokenizedRequest = stemText(filterTokenizedSearchableRequest);
 
-console.log(relevantWeightedText.length);
-
-//ПРОЙТИСЬ ПО ОБЪЕКТАМ СДЕЛАТЬ СЧЕТЧИКИ И С БОЛЬШИМ СЧЕТЧИКОМ ВЫВЕСТИ
+console.log(getResponse(stemmedTokenizedRequest, relevantWeightedText));
