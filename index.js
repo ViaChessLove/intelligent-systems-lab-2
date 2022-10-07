@@ -1,7 +1,5 @@
 "use strict";
 
-//TODO: выдача при поиске должна выдавать название файла, сходные термы,
-
 const { question } = require('readline-sync');
 const { countBy } = require('lodash');
 
