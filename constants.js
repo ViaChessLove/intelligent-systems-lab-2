@@ -3,7 +3,10 @@ const fileTitles = [
   'jses2022',
   'why-es-build-fast',
   'typescript-1',
-  'typescript-2'
+  'typescript-2',
+  'web3',
+  'why-es-build-fast',
+  'frontends-hard'
 ];
 
 const stopWords = [

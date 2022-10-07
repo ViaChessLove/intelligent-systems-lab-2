@@ -14,7 +14,7 @@ const searchDataByRequest = (request, data) => {
         .find((content) => (
           content[0] === word 
           && (weights[textIndex] += content[1])
-          && (similarTerms[textIndex] += content[0] + ' ')
+          && (similarTerms[textIndex] += content[0] + '; ')
         ));
     });
   });
@@ -34,11 +34,10 @@ const getResponse = (request, data) => {
     let indexOfMostRelevant = weights.indexOf(Math.max(...weights));
     weights[indexOfMostRelevant] = -1;
     return `${weightIndex + 1}. data - ${data[indexOfMostRelevant].title} similarTerms - ${similarTerms[indexOfMostRelevant]}`
-  })
+  });
   return result.join('\r\n');
 };
 
 module.exports = {
-  searchDataByRequest,
   getResponse,
 };
