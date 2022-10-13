@@ -1,8 +1,8 @@
 const { countBy } = require('lodash');
 const { stemmer } = require('porter-stemmer');
 const {
-  symbols,
-  numberPattern,
+  SYMBOLS,
+  NUMBER_PATTERN,
 } = require('./constants');
 
 
@@ -27,9 +27,9 @@ const fillTextWithContentFromData = (fileTexts, title) => {
   fileTexts.push(fileInfo);
 };
 
-const filterBySymbol = (symbols, character) => {
+const filterBySymbol = (SYMBOLS, character) => {
   let filterFlag = true;
-  symbols.forEach((symbol) => {
+  SYMBOLS.forEach((symbol) => {
     if (symbol === character) {
       filterFlag = false;
     }
@@ -44,10 +44,10 @@ const filterByPattern = (character, pattern) => {
   : false;
 }
 
-const filterBySymbolAndNumber = (symbols, character, numberPattern) => {
-  let filterFlag = filterBySymbol(symbols, character);
+const filterBySymbolAndNumber = (SYMBOLS, character, NUMBER_PATTERN) => {
+  let filterFlag = filterBySymbol(SYMBOLS, character);
 
-  return filterFlag ? filterByPattern(character, numberPattern) : filterFlag;
+  return filterFlag ? filterByPattern(character, NUMBER_PATTERN) : filterFlag;
 };
 
 const filterByStopWords = (character, stopWords) => {
@@ -64,7 +64,7 @@ const tokenizeText = (text) => (
   text
   .toLowerCase()
   .split('')
-  .filter((character) => filterBySymbolAndNumber(symbols, character, numberPattern))
+  .filter((character) => filterBySymbolAndNumber(SYMBOLS, character, NUMBER_PATTERN))
   .join('')
   .split('\r\n')
   .join(' ')

@@ -1,15 +1,15 @@
 // min 2 files for collection
-const fileTitles = [
+const FILE_TITLES = [
   'jses2022',
   'why-es-build-fast',
   'typescript-1',
   'typescript-2',
   'web3',
-  'why-es-build-fast',
-  'frontends-hard'
+  'frontends-hard',
+  'pattern-open-module',
 ];
 
-const stopWords = [
+const STOP_WORDS = [
   'ourselves', 'hers', 'between', 'yourself',
   'but', 'again', 'there', 'about', 'once',
   'during', 'out', 'very', 'having', 'with',
@@ -34,18 +34,18 @@ const stopWords = [
   'doing', 'it', 'how', 'further', 'was', 'here', 'than'
 ];
 
-const symbols = [
+const SYMBOLS = [
   ',', '(', ')', ' - ',
   '[', ']', ':', ';', '#', '+',
   '_', '/', '@', '.', "'", '"',
   '?', '%', '^', '$', '!'
 ];
 
-const numberPattern = /\d+/g;
+const NUMBER_PATTERN = /\d+/g;
 
 module.exports = Object.freeze({
-  stopWords,
-  symbols,
-  numberPattern,
-  fileTitles,
+  STOP_WORDS,
+  SYMBOLS,
+  NUMBER_PATTERN,
+  FILE_TITLES,
 });

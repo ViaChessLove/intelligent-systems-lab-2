@@ -4,20 +4,22 @@ const { question } = require('readline-sync');
 const { countBy } = require('lodash');
 
 const {
-  stopWords,
-  fileTitles,
+  STOP_WORDS,
+  FILE_TITLES,
 } = require('./constants');
+
 const{
   fillTextWithContentFromData,
   filterByStopWords,
   tokenizeText,
   stemText,
 } = require('./utils');
-const { getResponse } = require('./vectorSearchModel');
+
+const { getResponse } = require('./boolSearchModel');
 
 const fileTexts = [];
 
-fileTitles.forEach((title) => fillTextWithContentFromData(fileTexts, title));
+FILE_TITLES.forEach((title) => fillTextWithContentFromData(fileTexts, title));
 
 const tokenizedText = fileTexts.map(({title, content}) => ({
   title,
@@ -26,7 +28,7 @@ const tokenizedText = fileTexts.map(({title, content}) => ({
 
 const tokenizedTextWithoutStopWords = tokenizedText.map(({title, content}) => ({
   title,
-  content: content.filter((word) => filterByStopWords(word, stopWords)),
+  content: content.filter((word) => filterByStopWords(word, STOP_WORDS)),
 }));
 
 const stemmedTokenizedText = tokenizedTextWithoutStopWords.map(({title, content}) => ({
@@ -57,7 +59,7 @@ const searchingRequest = question("Input the line to search: ");
 
 const tokenizedSearchableRequest = tokenizeText(searchingRequest);
 
-const filterTokenizedSearchableRequest = tokenizedSearchableRequest.filter((word) => filterByStopWords(word, stopWords));
+const filterTokenizedSearchableRequest = tokenizedSearchableRequest.filter((word) => filterByStopWords(word, STOP_WORDS));
 
 const stemmedTokenizedRequest = stemText(filterTokenizedSearchableRequest);
 
